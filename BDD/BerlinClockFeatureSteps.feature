@@ -49,3 +49,31 @@ RRRR
 OOOOOOOOOOO
 OOOO
 """
+
+Scenario: Immediately after midnight
+When the time is "24:00:01"
+Then I am notified of error
+
+Scenario: Negative time
+When the time is "-01:00:01"
+Then I am notified of error
+
+Scenario: Too detailed time
+When the time is "00:00:00:00"
+Then I am notified of error
+
+Scenario: Badly formatted time
+When the time is "00:bbb:ccc"
+Then I am notified of error
+
+Scenario: Hours exceed range
+When the time is "25:00:00"
+Then I am notified of error
+
+Scenario: Minutes exceed range
+When the time is "00:60:00"
+Then I am notified of error
+
+Scenario: Seconds exceed range
+When the time is "00:00:60"
+Then I am notified of error

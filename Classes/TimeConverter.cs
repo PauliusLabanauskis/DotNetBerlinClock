@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 
 namespace BerlinClock
@@ -8,6 +9,11 @@ namespace BerlinClock
         public string ConvertTime(string aTime)
         {
             var time = ParseTime(aTime);
+
+            if (time.TotalSeconds > TimeSpan.FromDays(1).TotalSeconds)
+            {
+                throw new InvalidOperationException("Time exceeds 24 hours");
+            }
 
             var topLightOn = time.Seconds % 2 == 0;
 
@@ -28,13 +34,30 @@ namespace BerlinClock
         {
             var timeComponents = time.Split(':');
 
-            var hours = int.Parse(timeComponents[0]);
+            if (timeComponents.Length != 3 || timeComponents.Any(c => c.Except("0123456789").Any()))
+            {
+                throw new InvalidOperationException("Unsupported time format");
+            }
+
+            var hours = uint.Parse(timeComponents[0]);
+            if (hours > 24)
+            {
+                throw new InvalidOperationException("Hour range exceeded");
+            }
             var parsedTime = TimeSpan.FromHours(hours);
 
-            var minutes = int.Parse(timeComponents[1]);
+            var minutes = uint.Parse(timeComponents[1]);
+            if (minutes > 59)
+            {
+                throw new InvalidOperationException("Minute range exceeded");
+            }
             parsedTime = parsedTime.Add(TimeSpan.FromMinutes(minutes));
 
-            var seconds = int.Parse(timeComponents[2]);
+            var seconds = uint.Parse(timeComponents[2]);
+            if (seconds > 59)
+            {
+                throw new InvalidOperationException("Second range exceeded");
+            }
             parsedTime = parsedTime.Add(TimeSpan.FromSeconds(seconds));
 
             return parsedTime;

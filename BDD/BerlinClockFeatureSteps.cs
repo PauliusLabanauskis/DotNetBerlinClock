@@ -23,5 +23,11 @@ namespace BerlinClock
             Assert.That(berlinClock.ConvertTime(theTime), Is.EqualTo(theExpectedBerlinClockOutput));
         }
 
+        [Then(@"I am notified of error")]
+        public void ThenIAmNotifiedOfError()
+        {
+            Assert.That(() => berlinClock.ConvertTime(theTime), Throws.InvalidOperationException);
+        }
+
     }
 }

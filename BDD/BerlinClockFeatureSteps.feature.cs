@@ -127,6 +127,111 @@ testRunner.Then("the clock should look like", "Y\r\nRRRR\r\nRRRR\r\nOOOOOOOOOOO\
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Immediately after midnight")]
+        public virtual void ImmediatelyAfterMidnight()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Immediately after midnight", ((string[])(null)));
+#line 53
+this.ScenarioSetup(scenarioInfo);
+#line 54
+testRunner.When("the time is \"24:00:01\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 55
+testRunner.Then("I am notified of error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Negative time")]
+        public virtual void NegativeTime()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Negative time", ((string[])(null)));
+#line 57
+this.ScenarioSetup(scenarioInfo);
+#line 58
+testRunner.When("the time is \"-01:00:01\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 59
+testRunner.Then("I am notified of error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Too detailed time")]
+        public virtual void TooDetailedTime()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Too detailed time", ((string[])(null)));
+#line 61
+this.ScenarioSetup(scenarioInfo);
+#line 62
+testRunner.When("the time is \"00:00:00:00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 63
+testRunner.Then("I am notified of error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Badly formatted time")]
+        public virtual void BadlyFormattedTime()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Badly formatted time", ((string[])(null)));
+#line 65
+this.ScenarioSetup(scenarioInfo);
+#line 66
+testRunner.When("the time is \"00:bbb:ccc\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 67
+testRunner.Then("I am notified of error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Hours exceed range")]
+        public virtual void HoursExceedRange()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Hours exceed range", ((string[])(null)));
+#line 69
+this.ScenarioSetup(scenarioInfo);
+#line 70
+testRunner.When("the time is \"25:00:00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 71
+testRunner.Then("I am notified of error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Minutes exceed range")]
+        public virtual void MinutesExceedRange()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Minutes exceed range", ((string[])(null)));
+#line 73
+this.ScenarioSetup(scenarioInfo);
+#line 74
+testRunner.When("the time is \"00:60:00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 75
+testRunner.Then("I am notified of error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Seconds exceed range")]
+        public virtual void SecondsExceedRange()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Seconds exceed range", ((string[])(null)));
+#line 77
+this.ScenarioSetup(scenarioInfo);
+#line 78
+testRunner.When("the time is \"00:00:60\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 79
+testRunner.Then("I am notified of error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
